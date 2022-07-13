@@ -102,7 +102,6 @@ const createUser = ()=> {
 };
 
 const updateUser = (user)=> {
-  // debugger;
   return async(dispatch)=> {
     user = (await axios.put(`/api/users/${user.id}`, user)).data;
     dispatch({ type: 'UPDATE_USER', user });
