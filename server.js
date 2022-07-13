@@ -34,6 +34,11 @@ app.put('/api/things/:id', async(req, res, next)=> {
     res.send(thing);
   }
   catch(ex){
+    if(ex.name === 'RangeError'){
+      const serverCode_TooManyThings = 409; // Conflict with current state of server
+      res.status(serverCode_TooManyThings).send(ex.message);
+      return;
+    }
     next(ex);
   }
 });

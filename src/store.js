@@ -83,8 +83,13 @@ const createThing = ()=> {
 
 const updateThing = (thing)=> {
   return async(dispatch)=> {
-    thing = (await axios.put(`/api/things/${thing.id}`, thing)).data;
-    dispatch({ type: 'UPDATE_THING', thing });
+    try {
+      thing = (await axios.put(`/api/things/${thing.id}`, thing)).data;
+      dispatch({ type: 'UPDATE_THING', thing });
+    } catch(ex) {
+      console.error('error updating thing', ex);
+      alert(ex.response.data);
+    }
   };
 };
 const deleteThing = (thing)=> {
@@ -102,7 +107,6 @@ const createUser = ()=> {
 };
 
 const updateUser = (user)=> {
-  // debugger;
   return async(dispatch)=> {
     user = (await axios.put(`/api/users/${user.id}`, user)).data;
     dispatch({ type: 'UPDATE_USER', user });
