@@ -96,7 +96,6 @@ const deleteThing = (thing)=> {
 
 const createUser = ()=> {
   return async(dispatch)=> {
-    console.log('faker here', faker);
     const user = (await axios.post('/api/users', { name: faker.name.firstName() })).data;
     dispatch({ type: 'CREATE_USER', user });
   };
