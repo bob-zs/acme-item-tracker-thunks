@@ -35,7 +35,6 @@ const Things = ({ things, users, deleteThing, increment })=> {
             })
         }
       </ul>
-      <ThingForm />
     </div>
   );
 };

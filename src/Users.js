@@ -14,9 +14,11 @@ const Users = ({ users, createUser, deleteUser, things, removeThingFromUser, inc
             return (
               <li key={ user.id }>
                 { user.name } ({ user.ranking })
-                <button onClick={ ()=> deleteUser(user)}>x</button>
-                <button onClick={()=> increment(user, -1)}>-</button>
-                <button onClick={()=> increment(user, 1)}>+</button>
+                  <div>
+                    <button onClick={ ()=> deleteUser(user)}>x</button>
+                    <button onClick={()=> increment(user, -1)}>-</button>
+                    <button onClick={()=> increment(user, 1)}>+</button>
+                  </div>
                 <ul>
                 {
                   things.filter( thing => thing.userId === user.id)
