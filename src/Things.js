@@ -26,7 +26,7 @@ const Things = ({ things, users, deleteThing, increment })=> {
                 <li key={ thing.id }>
                   { thing.name } ({ thing.ranking })
                   { owner && ` owned by ${owner.name} who has ${owner.numThingsOwned} thing${ (owner.numThingsOwned > 1) ? `s` : '' }` || `` }
-                  <ThingOwnerForm thing={ thing } users={ users } />
+                  <ThingOwnerForm thing={ thing } usersWithNumThings={ usersWithNumThings } />
                   <button onClick={ ()=> deleteThing(thing)}>x</button>
                   <button onClick={()=> increment(thing, -1)}>-</button>
                   <button onClick={()=> increment(thing, 1)}>+</button>
