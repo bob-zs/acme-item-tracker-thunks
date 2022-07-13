@@ -24,9 +24,16 @@ const Thing = conn.define('thing', {
 });
 
 Thing.belongsTo(User);
-Thing.addHook('beforeValidate', (thing) => {
+User.hasMany(Thing);
+Thing.addHook('beforeValidate', async (thing) => {
   if(!thing.userId){
     thing.userId = null;
+    return;
+  }
+
+  const newOwner = await User.findByPk(thing.userId, { include: [Thing] });
+  if(newOwner.things.length >= 3){
+    throw new RangeError('A user can have a max of 3 things');
   }
 });
 
